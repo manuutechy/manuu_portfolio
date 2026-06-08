@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F7F7F5;
+  --color-text-primary: #0A0A0A;
+  --color-text-secondary: #6B6B6B;
+  --color-accent: #FF5C00;
+  --color-accent-hover: #E54E00;
+  --color-border: #E8E8E4;
+  --color-nav-bg: rgba(255, 255, 255, 0.72);
+
+  --font-display: var(--font-inter), -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'SF Mono', monospace;
+  --font-sora: var(--font-sora), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-dm-sans: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-nav: 0 1px 0 #E8E8E4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #FFFFFF;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
