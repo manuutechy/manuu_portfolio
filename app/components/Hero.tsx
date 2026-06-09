@@ -63,7 +63,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35, ease: easeOut }}
             >
-              I build websites, softwares, and apps that <span className="text-accent font-semibold">convert</span>, tell your story, and uplift your brand better than anyone else in Kenya <span className="text-accent font-semibold">— and I have proof.</span>
+              I build websites, softwares, and apps that <span className="text-accent font-semibold">convert</span>, tell your story, and uplift your brand.
             </motion.h1>
 
             <motion.div
