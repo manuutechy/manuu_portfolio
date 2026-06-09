@@ -116,8 +116,8 @@ export default function ProjectsPage() {
                 <Image
                   src={featuredProject.image}
                   alt={featuredProject.name}
-                  width={600}
-                  height={400}
+                  width={700}
+                  height={525}
                   className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
                 />
               </div>
@@ -184,8 +184,8 @@ export default function ProjectsPage() {
                     <Image
                       src={project.image}
                       alt={project.name}
-                      width={580}
-                      height={360}
+                      width={700}
+                      height={525}
                       className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
                     />
                   </div>

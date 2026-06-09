@@ -111,10 +111,10 @@ export default function Projects() {
             <Image
               src={projects[0].image}
               alt={`${projects[0].name} — ${projects[0].category} project by Emmanuel Charles`}
-              width={1200}
-              height={675}
+              width={1400}
+              height={875}
               className="w-full object-cover group-hover/image:scale-[1.02] transition-transform duration-500 ease-out"
-              style={{ aspectRatio: '16/9' }}
+              style={{ aspectRatio: '16/10' }}
             />
             <div className="absolute bottom-0 left-0 h-[4px] bg-accent w-0 group-hover/image:w-full transition-all duration-400 ease-out" />
           </div>
@@ -176,10 +176,10 @@ export default function Projects() {
                 <Image
                   src={project.image}
                   alt={`${project.name} — ${project.category} project by Emmanuel Charles`}
-                  width={600}
-                  height={375}
+                  width={700}
+                  height={525}
                   className="w-full object-cover group-hover/image:scale-[1.02] transition-transform duration-500 ease-out"
-                  style={{ aspectRatio: '16/10' }}
+                  style={{ aspectRatio: '4/3' }}
                 />
                 <div className="absolute bottom-0 left-0 h-[4px] bg-accent w-0 group-hover/image:w-full transition-all duration-400 ease-out" />
               </div>
