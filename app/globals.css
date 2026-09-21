@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 :root {
+  --color-ink: oklch(0.18 0.012 50);
+  --color-paper: oklch(0.985 0 0);
+  --color-flame: oklch(0.7 0.205 43);
+  --color-mute: oklch(0.42 0.012 50);
+  --color-rule: oklch(0.86 0.005 50);
+
+  /* Legacy tokens still read by the inner pages */
   --color-bg-primary: #FFFFFF;
   --color-bg-secondary: #F7F7F5;
   --color-text-primary: #0A0A0A;
@@ -12,11 +19,11 @@
   --color-border: #E8E8E4;
   --color-nav-bg: rgba(255, 255, 255, 0.72);
 
-  --font-display: var(--font-inter), -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
-  --font-mono: var(--font-jetbrains-mono), 'SF Mono', monospace;
-  --font-sora: var(--font-sora), -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-dm-sans: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
+  --font-body: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
+  --font-mono: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
+  --font-sora: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
+  --font-dm-sans: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
 
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
   --shadow-nav: 0 1px 0 #E8E8E4;
@@ -30,32 +37,93 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 24px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
 }
 
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
-*:focus-visible {
-  outline: 2px solid var(--color-accent);
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid currentColor;
   outline-offset: 3px;
 }
 
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
 ::selection {
-  background: var(--color-accent);
-  color: #FFFFFF;
+  background: var(--color-ink);
+  color: var(--color-flame);
 }
 
 img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.display {
+  font-weight: 800;
+  font-stretch: 112%;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  z-index: 50;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 12px 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+@keyframes rise {
+  from { transform: translateY(18px); }
+  to { transform: translateY(0); }
+}
+
+.rise {
+  animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.rise-2 { animation-delay: 0.08s; }
+.rise-3 { animation-delay: 0.16s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+  }
 }

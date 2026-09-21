@@ -1,59 +1,37 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono, Sora, DM_Sans } from 'next/font/google'
+import { Archivo } from 'next/font/google'
 import './globals.css'
-import SmoothScrollProvider from './components/SmoothScroll'
-import CustomCursor from './components/CustomCursor'
-import FloatingContact from './components/FloatingContact'
 
-const inter = Inter({
+const archivo = Archivo({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
+  axes: ['wdth'],
+  variable: '--font-archivo',
   display: 'swap',
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-})
-
-const sora = Sora({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-sora',
-  display: 'swap',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-})
+const title = 'Emmanuel Charles — Founder of Munchify, Cyzora and Zyra Net'
+const description =
+  'Emmanuel Charles founds and runs Munchify (food delivery), Cyzora (M-Pesa payments) and Zyra Net (internet in Kisumu): everyday infrastructure for Kenya.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://emmanuelcharles.dev'),
-  title: 'Emmanuel Charles — Software Engineer & Digital Product Builder',
-  description: 'Emmanuel Charles designs and engineers websites, systems, mobile apps, and AI-powered products that help businesses operate smarter and scale faster.',
-  keywords: ['software engineer Kenya', 'web developer Nairobi', 'system architect', 'mobile app developer', 'Next.js developer', 'Flutter developer', 'Emmanuel Charles'],
+  title,
+  description,
+  keywords: ['Emmanuel Charles', 'Munchify', 'Cyzora', 'Zyra Net', 'Kenyan founder', 'Kenya startups'],
   authors: [{ name: 'Emmanuel Charles' }],
   creator: 'Emmanuel Charles',
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'en_KE',
     url: 'https://emmanuelcharles.dev',
     siteName: 'Emmanuel Charles',
-    title: 'Emmanuel Charles — Software Engineer & Digital Product Builder',
-    description: 'Software engineer and system architect based in Kenya. Building websites, systems, apps, and AI solutions.',
-    images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: 'Emmanuel Charles — Software Engineer' }],
+    title,
+    description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Emmanuel Charles — Software Engineer & Digital Product Builder',
-    description: 'Software engineer and system architect based in Kenya.',
-    images: ['/images/og-image.jpg'],
+    title,
+    description,
   },
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://emmanuelcharles.dev' },
@@ -64,11 +42,17 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Emmanuel Charles',
   alternateName: 'Manuu',
-  jobTitle: 'Software Engineer',
+  jobTitle: 'Founder',
   url: 'https://emmanuelcharles.dev',
   sameAs: [
     'https://github.com/manuutechy',
     'https://linkedin.com/in/manuutechy',
+    'https://x.com/manuutechy',
+  ],
+  worksFor: [
+    { '@type': 'Organization', name: 'Munchify', url: 'https://munchify.co.ke' },
+    { '@type': 'Organization', name: 'Cyzora', url: 'https://cyzora.co.ke' },
+    { '@type': 'Organization', name: 'Zyra Net', url: 'https://zyranet.co.ke' },
   ],
 }
 
@@ -78,10 +62,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${sora.variable} ${dmSans.variable}`}
-    >
+    <html lang="en" className={archivo.variable}>
       <head>
         <script
           type="application/ld+json"
@@ -89,11 +70,8 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SmoothScrollProvider>
-          <CustomCursor />
-          {children}
-          <FloatingContact />
-        </SmoothScrollProvider>
+        <a href="#main" className="skip-link">Skip to content</a>
+        {children}
       </body>
     </html>
   )
