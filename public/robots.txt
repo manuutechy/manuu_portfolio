@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: [OWNER TO PROVIDE: full URL]/sitemap.xml

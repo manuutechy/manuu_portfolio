@@ -1,161 +1,164 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import CompanyLogo from '../components/CompanyLogo'
+import Faq from '../components/Faq'
+import JsonLd from '../components/JsonLd'
+import PageHeader from '../components/PageHeader'
+import PageShell from '../components/PageShell'
+import { companies } from '../lib/companies'
+import { breadcrumbSchema, faqSchema, pageMetadata, personSchema } from '../lib/seo'
+import { person } from '../lib/site'
 
-const disciplines = [
-  'Fullstack Software Engineering',
-  'System Architecture & Scaling',
-  'Mobile App Development (Flutter)',
-  'AI Integration & Automation',
-  'Responsive UI/UX Web Design',
-  'DevOps & Secure Cloud Hosting',
+export const metadata: Metadata = pageMetadata({
+  title: 'About Emmanuel Charles (Manuu) | Kenyan Founder and Engineer',
+  description:
+    'Emmanuel Charles, known as Manuu, is a Kenyan founder and software engineer. He built Munchify from a hostel room, runs Cyzora and Zyra Net, and chairs GDG on Campus Maseno.',
+  path: '/about',
+})
+
+const faqs = [
+  {
+    q: 'Who is Emmanuel Charles?',
+    a: 'Emmanuel Charles is a Kenyan founder and software engineer and a BSc IT student. He founded Munchify, Cyzora and Zyra Net, and he chairs GDG on Campus Maseno.',
+  },
+  {
+    q: 'What does “Manuu” mean?',
+    a: 'Manuu is the name Emmanuel Charles goes by online, including on GitHub, LinkedIn and X as manuutechy.',
+  },
+  {
+    q: 'Which companies has Emmanuel Charles founded?',
+    a: 'He founded Munchify, a delivery platform in Maseno with more than 26,000 orders and over 30 people employed; Cyzora, an M-Pesa payments platform used by more than 500 Kenyan businesses; and Zyra Net, an internet service provider in Kisumu with more than 2,500 subscribers.',
+  },
+  {
+    q: 'Where is Emmanuel Charles based?',
+    a: 'He is based in Kenya. Munchify operates in Maseno and Zyra Net in Kisumu.',
+  },
+  {
+    q: 'What does Emmanuel Charles lead on campus?',
+    a: 'He chairs GDG on Campus Maseno, the student developer community at Maseno University, where he recruits students into tech and builds the community.',
+  },
+  {
+    q: 'How can I contact Emmanuel Charles?',
+    a: 'Message him on WhatsApp at +254 758 335 592 or email hi@manuutech.com. He reads every message himself.',
+  },
 ]
 
-const industries = [
-  'E-commerce & Luxury Brands',
-  'Education Technology (EdTech)',
-  'Real Estate & Lead Generation',
-  'Food Tech & Delivery Systems',
-  'FinTech & Custom Integrations',
-  'SaaS Startups & Portals',
+const glance = [
+  ['Known as', 'Manuu'],
+  ['Based in', 'Kenya'],
+  ['Studying', 'BSc IT'],
+  ['Chair', 'GDG on Campus Maseno'],
+  ['Founder of', 'Munchify, Cyzora, Zyra Net'],
 ]
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: 'easeOut' },
-}
 
 export default function AboutPage() {
   return (
-    <>
-      <Nav />
-      <main className="bg-bg-primary pt-[120px] pb-section-y">
-        <div className="max-w-content mx-auto px-6 lg:px-8">
-          
-          {/* Header */}
-          <div className="max-w-[800px] mb-[64px]">
-            <motion.p
-              className="font-mono text-small-label text-accent uppercase tracking-[0.08em] mb-[16px]"
-              {...fadeUp}
-            >
-              My Story
-            </motion.p>
-            <motion.h1
-              className="font-display font-bold text-h1-mobile lg:text-h1 text-text-primary tracking-[-0.03em] mb-[24px]"
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: 0.1 }}
-            >
-              Every website tells a story. <br />
-              I tell it <span className="text-accent">better than anyone else.</span>
-            </motion.h1>
-          </div>
+    <PageShell>
+      <JsonLd
+        data={[
+          personSchema(),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'About', path: '/about' },
+          ]),
+          faqSchema(faqs),
+        ]}
+      />
 
-          {/* Grid Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-[56px] lg:gap-[96px] items-start mb-[80px]">
-            
-            {/* Story text */}
-            <motion.div
-              className="flex flex-col gap-[24px]"
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: 0.2 }}
-            >
-              <h2 className="font-display font-bold text-[24px] lg:text-[28px] text-text-primary">
-                A creator at heart, a builder by trade.
-              </h2>
-              <p className="font-body font-normal text-body-default-mobile lg:text-body-default text-text-secondary leading-[1.8]">
-                I started my engineering journey by building Munchify, a complex food delivery and logistics ecosystem that connects local vendors and customers. 30 projects and 3 years later, I still love designing and building custom platforms tailored for businesses, professionals, and anyone with a dream. I believe that a website is a way of telling the world your story—and my commitment is to tell it better than anyone else.
-              </p>
+      <PageHeader
+        trail="About"
+        title="Emmanuel Charles, known as Manuu."
+        lead="I am a Kenyan founder and software engineer, and a BSc IT student. I run Munchify, Cyzora and Zyra Net, and I chair GDG on Campus Maseno."
+      />
 
-              <blockquote className="border-l-[3px] border-accent pl-[24px] my-[16px]">
-                <p className="font-display font-semibold text-[20px] lg:text-[22px] leading-[1.5] text-text-primary italic">
-                  &ldquo;I don&apos;t just write code — I partner with entrepreneurs to design and build the engines their businesses run on.&rdquo;
-                </p>
-              </blockquote>
-            </motion.div>
+      <div className="max-w-content mx-auto px-6 lg:px-8 pb-24 lg:pb-36">
+        <div className="grid lg:grid-cols-12 gap-x-16 gap-y-12">
+          <article className="prose-story min-w-0 lg:col-span-8" aria-label="My story">
+            <h2>Built differently</h2>
+            <p>
+              I grew up in a home with a clear plan for me: go to school, work hard, get good grades, get a job. It made sense to my parents, and for a long time it felt like the only road. But I wanted to build things, and that gap between the plan I was handed and the thing I felt pulled toward is where everything I have made comes from.
+            </p>
 
-            {/* Visual Column */}
-            <motion.div
-              className="relative"
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: 0.3 }}
-            >
-              <div className="relative overflow-hidden rounded-[16px] border border-border">
-                <Image
-                  src="/images/portrait.png"
-                  alt="Emmanuel Charles — Software Engineer"
-                  width={500}
-                  height={550}
-                  className="w-full object-cover rounded-[16px]"
-                />
-              </div>
-              <div className="bg-bg-secondary p-[24px] rounded-[12px] border border-border mt-[32px] flex items-center justify-between">
-                <div>
-                  <h4 className="font-display font-bold text-[20px] text-text-primary">Need a custom system?</h4>
-                  <p className="font-body text-[14px] text-text-secondary mt-[4px]">Let&apos;s map out your specifications.</p>
+            <h2>Self-taught, in a hostel</h2>
+            <p>
+              Nobody teaches website and app development in the first year of a degree, so I taught myself. I learned from YouTube tutorials on free campus wifi, made every idea my own, and wrote <Link href="/munchify">Munchify</Link> without AI. It began with one small, annoying problem: a friend could not order food. I have told that story in full on the Munchify page, and it is the honest start of everything else.
+            </p>
+
+            <h2>What I run</h2>
+            <p>Three companies, each live and serving real customers.</p>
+            <ul>
+              <li>
+                <strong>
+                  <Link href="/munchify">Munchify</Link>
+                </strong>{' '}
+                is a food, grocery and pharmacy delivery platform in Maseno. It has delivered more than 26,000 orders and employs over 30 people.
+              </li>
+              <li>
+                <strong>
+                  <Link href="/cyzora">Cyzora</Link>
+                </strong>{' '}
+                is an M-Pesa payments platform. More than 500 Kenyan businesses use it to get paid instantly.
+              </li>
+              <li>
+                <strong>
+                  <Link href="/zyranet">Zyra Net</Link>
+                </strong>{' '}
+                is an internet service provider in Kisumu, with more than 2,500 active subscribers.
+              </li>
+            </ul>
+
+            <h2>What running them has taught me</h2>
+            <p>
+              A company is not a bigger version of a project. The moment real money moves, you need systems: who touches what, how it is tracked, how people get paid. Financial discipline is not optional, it is the whole game, and building those systems has become as much of my job as writing code.
+            </p>
+            <p>
+              I have also learned to choose focus over speed. I could have chased expansion sooner. I would rather make a company work deeply in one place, so that it runs without me, before I try to build it everywhere.
+            </p>
+
+            <h2>Beyond my own companies</h2>
+            <p>
+              I chair GDG on Campus Maseno. By night I might be fixing a payment bug; by day I am recruiting students into tech, building the community and planning events. I do it because I want other students to see, in a real example, that the distance between a student with an idea and a founder with a company is shorter than it looks.
+            </p>
+
+            <h2>Why I share this</h2>
+            <p>
+              I did not start with a plan, capital or a mentor. I started with a laptop, free wifi and enough stubbornness to keep going until the code worked. If you have an idea nobody has taken seriously yet, it does not need permission or the right background. It needs you to start, and to keep showing up after the excitement wears off.
+            </p>
+
+            <h2>Get in touch</h2>
+            <p>
+              If you want to invest, partner, write about this work or hire me, message me on <a href={person.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a> or email <a href={`mailto:${person.email}`}>{person.email}</a>. I read every message myself.
+            </p>
+          </article>
+
+          <aside className="lg:col-span-4 lg:sticky lg:top-8 self-start rounded-2xl border border-line p-7" aria-label="Emmanuel Charles at a glance">
+            <h2 className="font-semibold text-[1.0625rem]">At a glance</h2>
+            <dl className="mt-5 space-y-4 text-[1rem]">
+              {glance.map(([term, value]) => (
+                <div key={term}>
+                  <dt className="text-dim text-[0.875rem]">{term}</dt>
+                  <dd>{value}</dd>
                 </div>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center bg-accent hover:bg-accent-hover text-white font-body font-medium text-[14px] px-[20px] py-[12px] rounded-pill transition-colors duration-200 no-underline shrink-0"
-                >
-                  Start Now &rarr;
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-
-          <hr className="border-border my-[80px]" />
-
-          {/* Disciplines & Industries */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[56px] lg:gap-[96px]">
-            <motion.div
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: 0.4 }}
-            >
-              <h3 className="font-display font-bold text-[20px] uppercase tracking-[0.08em] text-text-secondary mb-[24px]">
-                Disciplines
-              </h3>
-              <ul className="list-none p-0 flex flex-col gap-[16px]">
-                {disciplines.map((item) => (
-                  <li
-                    key={item}
-                    className="font-body font-normal text-[16px] text-text-primary flex items-center gap-[12px]"
+              ))}
+            </dl>
+            <ul className="mt-7 space-y-3 list-none">
+              {companies.map((company) => (
+                <li key={company.id}>
+                  <Link
+                    href={company.path}
+                    className="flex h-[64px] items-center justify-center rounded-xl bg-[oklch(0.97_0_0)] no-underline"
+                    aria-label={`${company.name}: ${company.caption}`}
                   >
-                    <span className="w-[8px] h-[8px] rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: 0.5 }}
-            >
-              <h3 className="font-display font-bold text-[20px] uppercase tracking-[0.08em] text-text-secondary mb-[24px]">
-                Industries Served
-              </h3>
-              <ul className="list-none p-0 flex flex-col gap-[16px]">
-                {industries.map((item) => (
-                  <li
-                    key={item}
-                    className="font-body font-normal text-[16px] text-text-primary flex items-center gap-[12px]"
-                  >
-                    <span className="w-[8px] h-[8px] rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-
+                    <CompanyLogo id={company.id} decorative />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
-      </main>
-      <Footer />
-    </>
+
+        <Faq items={faqs} heading="Questions about Emmanuel Charles" />
+      </div>
+    </PageShell>
   )
 }

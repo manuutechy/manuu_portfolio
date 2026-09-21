@@ -19,7 +19,7 @@ function fontsReady() {
 }
 
 function revealAll() {
-  gsap.set('[data-hide]', { autoAlpha: 1 })
+  if (document.querySelector('[data-hide]')) gsap.set('[data-hide]', { autoAlpha: 1 })
 }
 
 function padMasks(split: SplitText) {

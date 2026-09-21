@@ -1,6 +1,7 @@
 import Image from 'next/image'
+import type { CompanyId } from '../lib/companies'
 
-export type CompanyId = 'munchify' | 'cyzora' | 'zyranet'
+export type { CompanyId }
 
 interface CompanyLogoProps {
   id: CompanyId

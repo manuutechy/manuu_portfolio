@@ -4,7 +4,7 @@ const EMAIL = 'hi@manuutech.com'
 const supportLinks = [
   { name: 'Munchify', url: 'https://munchify.co.ke', note: 'Orders, riders and merchants' },
   { name: 'Cyzora', url: 'https://cyzora.co.ke', note: 'Accepting payments' },
-  { name: 'Zyra Net', url: 'https://zyranet.co.ke', note: 'Internet in Kisumu' },
+  { name: 'Zyra Net', url: 'https://zyranet.co.ke', note: 'Internet' },
 ]
 
 export default function Contact() {

@@ -1,36 +1,55 @@
+import Image from 'next/image'
 import Link from 'next/link'
+import { companies } from '../lib/companies'
+import { person } from '../lib/site'
 
-const links = [
-  { name: 'Munchify', url: 'https://munchify.co.ke' },
-  { name: 'Cyzora', url: 'https://cyzora.co.ke' },
-  { name: 'Zyra Net', url: 'https://zyranet.co.ke' },
-  { name: 'GitHub', url: 'https://github.com/manuutechy' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/manuutechy' },
-  { name: 'X', url: 'https://x.com/manuutechy' },
+const elsewhere = [
+  { name: 'GitHub', url: person.github },
+  { name: 'LinkedIn', url: person.linkedin },
+  { name: 'X', url: person.x },
+  { name: 'WhatsApp', url: person.whatsapp },
 ]
+
+const linkClass =
+  'inline-block py-2 text-[0.9375rem] text-dim no-underline hover:text-fg transition-colors'
 
 export default function Footer() {
   return (
     <footer className="bg-deep text-fg border-t border-line" aria-label="Site footer">
-      <div className="max-w-content mx-auto px-6 lg:px-8 py-14 flex flex-col items-center text-center gap-6">
-        <Link href="/" className="font-display text-[1.25rem] uppercase tracking-[0.2em] no-underline">
-          Emmanuel Charles
+      <div className="max-w-content mx-auto px-6 lg:px-8 py-14 flex flex-col items-center text-center gap-8">
+        <Link href="/" className="flex flex-col items-center gap-4 no-underline">
+          <Image src="/images/logo-mark.png" alt="" width={503} height={512} className="h-10 w-auto" />
+          <span className="font-display text-[1.25rem] uppercase tracking-[0.2em]">Emmanuel Charles</span>
         </Link>
+
+        <nav aria-label="Site pages">
+          <ul className="flex flex-wrap justify-center gap-x-8 gap-y-1 list-none">
+            <li>
+              <Link href="/about" className={linkClass}>
+                About
+              </Link>
+            </li>
+            {companies.map((company) => (
+              <li key={company.id}>
+                <Link href={company.path} className={linkClass}>
+                  {company.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <ul className="flex flex-wrap justify-center gap-x-8 gap-y-1 list-none">
-          {links.map((item) => (
+          {elsewhere.map((item) => (
             <li key={item.name}>
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block py-2 text-[0.9375rem] text-dim no-underline hover:text-fg transition-colors"
-              >
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
                 {item.name}
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </li>
           ))}
         </ul>
+
         <p className="text-[0.875rem] text-dim">&copy; {new Date().getFullYear()} Emmanuel Charles</p>
       </div>
     </footer>

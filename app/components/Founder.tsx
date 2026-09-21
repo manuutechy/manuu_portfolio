@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Founder() {
   return (
     <section
@@ -23,6 +25,13 @@ export default function Founder() {
         </div>
 
         <p className="mt-10 text-[0.8125rem] uppercase tracking-[0.2em] text-fg">Emmanuel Charles, Kenya</p>
+        <Link
+          href="/about"
+          className="mt-4 inline-flex items-center gap-2 py-2 font-semibold text-[1rem] underline underline-offset-[7px] decoration-1 hover:decoration-2"
+        >
+          Read my story
+          <span aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
     </section>
   )

@@ -1,11 +1,6 @@
 import Nav from './Nav'
-import CompanyLogo, { type CompanyId } from './CompanyLogo'
-
-const companies: { id: CompanyId; name: string; caption: string }[] = [
-  { id: 'munchify', name: 'Munchify', caption: 'Food delivery' },
-  { id: 'cyzora', name: 'Cyzora', caption: 'Payments' },
-  { id: 'zyranet', name: 'Zyra Net', caption: 'Internet in Kisumu' },
-]
+import CompanyLogo from './CompanyLogo'
+import { companies } from '../lib/companies'
 
 export default function Hero() {
   return (
@@ -19,7 +14,7 @@ export default function Hero() {
         className="absolute inset-0 -z-10 bg-[radial-gradient(65%_55%_at_50%_0%,rgb(255_255_255/0.08),transparent_72%)]"
       />
 
-      <Nav />
+      <Nav animate />
 
       <div className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20">
         <h1
