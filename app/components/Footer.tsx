@@ -4,10 +4,8 @@ import { companies } from '../lib/companies'
 import { person } from '../lib/site'
 
 const elsewhere = [
-  { name: 'GitHub', url: person.github },
-  { name: 'LinkedIn', url: person.linkedin },
-  { name: 'X', url: person.x },
-  { name: 'WhatsApp', url: person.whatsapp },
+  { name: 'GitHub', url: person.github, external: true },
+  { name: 'Email', url: `mailto:${person.email}`, external: false },
 ]
 
 const linkClass =
@@ -42,9 +40,13 @@ export default function Footer() {
         <ul className="flex flex-wrap justify-center gap-x-8 gap-y-1 list-none">
           {elsewhere.map((item) => (
             <li key={item.name}>
-              <a href={item.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
+              <a
+                href={item.url}
+                {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className={linkClass}
+              >
                 {item.name}
-                <span className="sr-only"> (opens in a new tab)</span>
+                {item.external ? <span className="sr-only"> (opens in a new tab)</span> : null}
               </a>
             </li>
           ))}

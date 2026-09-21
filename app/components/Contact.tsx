@@ -1,5 +1,4 @@
-const WHATSAPP = 'https://wa.me/254758335592'
-const EMAIL = 'hi@manuutech.com'
+import { person } from '../lib/site'
 
 const supportLinks = [
   { name: 'Munchify', url: 'https://munchify.co.ke', note: 'Orders, riders and merchants' },
@@ -24,28 +23,29 @@ export default function Contact() {
           Talk to me directly.
         </h2>
         <p className="mt-6 max-w-[46ch] mx-auto text-[1.125rem] leading-[1.65] text-dim">
-          Investing, partnering, press or hiring: message me on WhatsApp or write to me. I read everything myself.
+          Investing, partnering, press or hiring: write to me. I read everything myself.
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
-            href={`${WHATSAPP}?text=${encodeURIComponent('Hello Emmanuel, ')}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:${person.email}`}
             data-magnetic
             className="inline-flex items-center justify-center min-h-[56px] px-9 rounded-full bg-fg text-night font-semibold text-[1.0625rem] no-underline hover:bg-white transition-colors"
           >
-            Message on WhatsApp
-            <span className="sr-only"> (opens in a new tab)</span>
+            {person.email}
           </a>
           <a
-            href={`mailto:${EMAIL}`}
+            href={person.github}
+            target="_blank"
+            rel="noopener noreferrer"
             data-magnetic
             className="inline-flex items-center justify-center min-h-[56px] px-9 rounded-full border border-[rgb(255_255_255/0.22)] text-fg font-semibold text-[1.0625rem] no-underline hover:border-fg transition-colors"
           >
-            {EMAIL}
+            GitHub
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
+        <p className="mt-6 text-[1rem] text-dim">Also find me online as @{person.handle}</p>
 
         <div className="mt-20 border-t border-line pt-10">
           <h3 className="font-semibold text-[1.0625rem]">Need help with one of the companies?</h3>

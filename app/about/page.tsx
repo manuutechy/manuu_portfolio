@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: 'What does “Manuu” mean?',
-    a: 'Manuu is the name Emmanuel Charles goes by online, including on GitHub, LinkedIn and X as manuutechy.',
+    a: 'Manuu is the name Emmanuel Charles goes by online. His handle is @manuutech, and his code is on GitHub as manuutechy.',
   },
   {
     q: 'Which companies has Emmanuel Charles founded?',
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     q: 'How can I contact Emmanuel Charles?',
-    a: 'Message him on WhatsApp at +254 758 335 592 or email hi@manuutech.com. He reads every message himself.',
+    a: 'Email him at hi@manuutech.com, or find him on GitHub as manuutechy. He reads every message himself.',
   },
 ]
 
@@ -127,7 +127,7 @@ export default function AboutPage() {
 
             <h2>Get in touch</h2>
             <p>
-              If you want to invest, partner, write about this work or hire me, message me on <a href={person.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a> or email <a href={`mailto:${person.email}`}>{person.email}</a>. I read every message myself.
+              If you want to invest, partner, write about this work or hire me, email <a href={`mailto:${person.email}`}>{person.email}</a> or find me on <a href={person.github} target="_blank" rel="noopener noreferrer">GitHub</a>. I read every message myself.
             </p>
           </article>
 

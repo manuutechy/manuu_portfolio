@@ -26,14 +26,14 @@ export function personSchema() {
     '@type': 'Person',
     '@id': personId,
     name: person.name,
-    alternateName: [person.alternateName],
+    alternateName: [person.alternateName, person.handle],
     url: siteUrl,
     jobTitle: 'Founder and software engineer',
     description:
       'Emmanuel Charles, known as Manuu, is a Kenyan founder and software engineer. He founded Munchify, Cyzora and Zyra Net, and chairs GDG on Campus Maseno.',
     email: person.email,
     address: { '@type': 'PostalAddress', addressCountry: 'KE' },
-    sameAs: [person.github, person.linkedin, person.x],
+    sameAs: [person.github],
     worksFor: companies.map((company) => ({
       '@type': 'Organization',
       name: company.name,

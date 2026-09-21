@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { person } from '../lib/site'
 
 const linkClass =
   'inline-block py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-dim no-underline hover:text-fg transition-colors'
@@ -39,12 +40,12 @@ export default function Nav({ animate = false }: { animate?: boolean }) {
           </li>
           <li className="hidden md:block">
             <a
-              href="https://wa.me/254758335592"
+              href={person.github}
               target="_blank"
               rel="noopener noreferrer"
               className={linkClass}
             >
-              WhatsApp
+              GitHub
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </li>
