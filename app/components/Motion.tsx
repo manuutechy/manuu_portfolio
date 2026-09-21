@@ -37,11 +37,10 @@ function introHero() {
   if (performance.now() > FAILSAFE_MS) return revealAll()
 
   const hidden = all('[data-hide]', hero)
-  const frame = hero.querySelector('[data-portrait-frame]')
-  const photo = hero.querySelector('[data-portrait]')
   const nav = hero.querySelector('[data-hero-nav]')
   const sub = hero.querySelector('[data-hero-sub]')
   const cue = hero.querySelector('[data-hero-cue]')
+  const logos = all('[data-hero-logo]', hero)
 
   const split = SplitText.create(title, { type: 'lines,chars', mask: 'lines' })
   padMasks(split)
@@ -53,38 +52,11 @@ function introHero() {
     onComplete: () => split.revert(),
   })
 
-  if (frame) tl.from(frame, { autoAlpha: 0, duration: 2.2, ease: 'power2.out' }, 0)
-  if (photo) tl.from(photo, { scale: 1.14, duration: 3, ease: 'power3.out' }, 0)
   tl.from(split.chars, { yPercent: 115, duration: 1.15, stagger: 0.035 }, 0.35)
   if (nav) tl.from(nav, { autoAlpha: 0, y: -10, duration: 0.9 }, 0.7)
   if (sub) tl.from(sub, { y: 18, autoAlpha: 0, duration: 1 }, 1.15)
-  if (cue) tl.from(cue, { autoAlpha: 0, duration: 1 }, 1.7)
-}
-
-function heroScroll() {
-  const hero = document.getElementById('top')
-  const photo = hero?.querySelector('[data-portrait]')
-  if (!hero || !photo) return
-
-  gsap.to(photo, {
-    yPercent: 8,
-    ease: 'none',
-    scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
-  })
-}
-
-function logoWall() {
-  const logos = all('[data-logo]')
-  if (!logos.length) return
-
-  gsap.from(logos, {
-    y: 22,
-    autoAlpha: 0,
-    duration: 1,
-    ease: 'expo.out',
-    stagger: 0.12,
-    scrollTrigger: { trigger: '#companies', start: 'top 82%', once: true },
-  })
+  if (logos.length) tl.from(logos, { y: 28, autoAlpha: 0, duration: 1.1, stagger: 0.12 }, 1.3)
+  if (cue) tl.from(cue, { autoAlpha: 0, duration: 1 }, 2)
 }
 
 function counters() {
@@ -134,19 +106,18 @@ function founderFill() {
   )
 }
 
-function contactReveal() {
-  const heading = document.querySelector<HTMLElement>('[data-reveal-lines]')
-  if (!heading) return
+function revealLines() {
+  all<HTMLElement>('[data-reveal-lines]').forEach((heading) => {
+    const split = SplitText.create(heading, { type: 'lines', mask: 'lines' })
+    padMasks(split)
 
-  const split = SplitText.create(heading, { type: 'lines', mask: 'lines' })
-  padMasks(split)
-
-  gsap.from(split.lines, {
-    yPercent: 115,
-    duration: 1.1,
-    ease: 'expo.out',
-    stagger: 0.1,
-    scrollTrigger: { trigger: heading, start: 'top 88%', once: true },
+    gsap.from(split.lines, {
+      yPercent: 115,
+      duration: 1.1,
+      ease: 'expo.out',
+      stagger: 0.1,
+      scrollTrigger: { trigger: heading, start: 'top 88%', once: true },
+    })
   })
 }
 
@@ -212,13 +183,11 @@ export default function Motion() {
         ctx.add(() => {
           introHero()
           founderFill()
-          contactReveal()
+          revealLines()
           ScrollTrigger.refresh()
         })
       })
 
-      heroScroll()
-      logoWall()
       counters()
 
       return () => {

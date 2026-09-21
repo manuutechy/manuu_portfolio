@@ -1,5 +1,11 @@
-import Image from 'next/image'
 import Nav from './Nav'
+import CompanyLogo, { type CompanyId } from './CompanyLogo'
+
+const companies: { id: CompanyId; name: string; caption: string }[] = [
+  { id: 'munchify', name: 'Munchify', caption: 'Food delivery' },
+  { id: 'cyzora', name: 'Cyzora', caption: 'Payments' },
+  { id: 'zyranet', name: 'Zyra Net', caption: 'Internet in Kisumu' },
+]
 
 export default function Hero() {
   return (
@@ -8,30 +14,18 @@ export default function Hero() {
       aria-label="Introduction"
       className="relative isolate overflow-hidden bg-night text-fg min-h-[100svh] flex flex-col"
     >
-      <div data-portrait-frame data-hide className="absolute inset-0 -z-20 flex justify-center">
-        <div data-portrait className="hero-photo relative h-full aspect-square max-w-full">
-          <Image
-            src="/images/portrait.png"
-            alt="Emmanuel Charles speaking on stage with a microphone"
-            fill
-            priority
-            sizes="(min-width: 1100px) 1100px, 100vw"
-            className="object-cover object-[50%_30%] grayscale contrast-[1.08] brightness-[0.9]"
-          />
-        </div>
-      </div>
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--color-base)_1%,transparent_46%),linear-gradient(to_bottom,rgb(0_0_0/0.55),transparent_24%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(65%_55%_at_50%_0%,rgb(255_255_255/0.08),transparent_72%)]"
       />
 
       <Nav />
 
-      <div className="relative flex-1 flex flex-col items-center justify-end text-center px-6 pt-32 pb-[15svh]">
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20">
         <h1
           data-hero-title
           data-hide
-          className="display uppercase text-[clamp(2.75rem,9vw,7.25rem)] tracking-[0.01em] text-fg [text-shadow:0_2px_48px_rgb(0_0_0/0.6)]"
+          className="display text-[clamp(2.75rem,8.6vw,6.75rem)] [text-wrap:balance]"
         >
           Emmanuel <br className="sm:hidden" />
           Charles
@@ -39,13 +33,32 @@ export default function Hero() {
         <p
           data-hero-sub
           data-hide
-          className="mt-6 text-[0.9375rem] sm:text-[1.0625rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-dim"
+          className="mt-5 text-[0.9375rem] sm:text-[1.0625rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-dim"
         >
           Founder of Munchify, Cyzora and Zyra Net
         </p>
+
+        <ul className="mt-14 sm:mt-16 w-full max-w-[920px] grid sm:grid-cols-3 gap-x-4 gap-y-6 list-none">
+          {companies.map((company) => (
+            <li key={company.id} data-hero-logo data-hide>
+              <a
+                href={`#${company.id}`}
+                aria-label={`${company.name}: ${company.caption}`}
+                className="group block no-underline"
+              >
+                <span className="flex h-[84px] sm:h-[112px] items-center justify-center rounded-2xl bg-[oklch(0.97_0_0)] transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:-translate-y-1">
+                  <CompanyLogo id={company.id} decorative />
+                </span>
+                <span className="mt-3 block text-[0.875rem] text-dim group-hover:text-fg transition-colors">
+                  {company.caption}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div className="absolute bottom-6 inset-x-0 flex justify-center">
+      <div className="absolute bottom-4 inset-x-0 flex justify-center">
         <a
           data-hero-cue
           data-hide

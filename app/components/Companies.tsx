@@ -1,10 +1,11 @@
 import Image from 'next/image'
+import CompanyLogo, { type CompanyId } from './CompanyLogo'
 
 interface Company {
-  id: string
+  id: CompanyId
   name: string
-  kind: string
-  summary: string
+  hook: string
+  story: string[]
   facts: { value: string; label: string; count?: { to: number; prefix?: string; suffix?: string } }[]
   url: string
   host: string
@@ -16,14 +17,16 @@ const companies: Company[] = [
   {
     id: 'munchify',
     name: 'Munchify',
-    kind: 'Food and essentials delivery',
-    summary:
-      'Hot meals, groceries and pharmacy runs, ordered from a phone and brought to the door by Munchify riders. It started at ten orders a day.',
+    hook: 'From ten orders a day to a delivery network.',
+    story: [
+      'Munchify brings hot meals, groceries and pharmacy runs to people in and around Maseno. One order, one rider, and it arrives at the hostel or the front door in 20 to 30 minutes.',
+      'Local kitchens and stores list on the platform, riders earn on their own hours, and customers order on the web or the Android app. It started at ten orders a day. Kakamega opens in January 2027 and Kisumu Central in June 2027.',
+    ],
     facts: [
       { value: '20,000+', label: 'orders a week', count: { to: 20000, suffix: '+' } },
       { value: '50+', label: 'local kitchens and stores', count: { to: 50, suffix: '+' } },
       { value: '20–30 min', label: 'average delivery' },
-      { value: '2027', label: 'Kakamega and Kisumu Central hubs' },
+      { value: '4.8 / 5', label: 'rating on Google Play' },
     ],
     url: 'https://munchify.co.ke',
     host: 'munchify.co.ke',
@@ -33,9 +36,11 @@ const companies: Company[] = [
   {
     id: 'cyzora',
     name: 'Cyzora',
-    kind: 'Payments',
-    summary:
-      'Businesses collect M-Pesa with a single prompt on the customer’s phone, then pay out staff and suppliers in bulk. Built for everyone from corner kiosks to delivery fleets.',
+    hook: 'Getting paid, without the chasing.',
+    story: [
+      'Small Kenyan businesses lose hours chasing payments and matching them to orders. Cyzora removes both. The customer taps pay and enters their M-Pesa PIN, the money lands in the business’s account, and the payment matches its order on its own.',
+      'It works from a website or app checkout, a payment link sent over WhatsApp, or a single API call, and it pays out staff and suppliers in bulk. From corner kiosks to delivery fleets, Kenyan businesses run on it.',
+    ],
     facts: [
       { value: '500+', label: 'Kenyan businesses', count: { to: 500, suffix: '+' } },
       { value: '< 800 ms', label: 'for the payment prompt to reach the phone' },
@@ -50,9 +55,11 @@ const companies: Company[] = [
   {
     id: 'zyranet',
     name: 'Zyra Net',
-    kind: 'Internet service provider, Kisumu',
-    summary:
-      'Home WiFi, business broadband and hotspot internet across Kisumu, paid for over M-Pesa, month to month with no lock-in.',
+    hook: 'Internet that just works, in Kisumu.',
+    story: [
+      'Zyra Net is a local internet provider for Kisumu: home WiFi, business broadband, hotspot and school internet over a fibre-backed wireless network, paid for through M-Pesa with no contracts.',
+      'Local technicians install in as little as 24 hours, and support answers on WhatsApp, phone and email at any hour. The network keeps expanding across Kisumu County.',
+    ],
     facts: [
       { value: '2,500+', label: 'active subscribers', count: { to: 2500, suffix: '+' } },
       { value: '100 Mbps', label: 'top speed', count: { to: 100, suffix: ' Mbps' } },
@@ -66,115 +73,104 @@ const companies: Company[] = [
   },
 ]
 
-const logoClass = 'w-auto opacity-90 group-hover:opacity-100 transition-opacity'
-
 export default function Companies() {
   return (
     <section
       id="companies"
       aria-labelledby="companies-heading"
-      className="bg-night pt-16 lg:pt-24 pb-24 lg:pb-36"
+      className="bg-night pt-8 pb-16 lg:pb-28"
     >
-      <div className="max-w-[1000px] mx-auto px-6">
-        <p className="text-center text-[0.8125rem] uppercase tracking-[0.2em] text-dim">Companies</p>
+      <div className="hairline" aria-hidden="true" />
 
-        <ul className="mt-10 grid sm:grid-cols-3 gap-y-10 items-center justify-items-center list-none">
-          <li data-logo>
-            <a href="#munchify" aria-label="Munchify" className="group flex items-center">
-              <Image src="/images/logo-munchify.png" alt="" width={390} height={128} className={`h-9 sm:h-10 ${logoClass}`} />
-            </a>
-          </li>
-          <li data-logo>
-            <a href="#cyzora" aria-label="Cyzora" className="group flex items-center gap-3">
-              <Image src="/images/logo-cyzora.png" alt="" width={94} height={128} className={`h-9 sm:h-10 ${logoClass}`} />
-              <span className="font-bold text-[1.75rem] sm:text-[2rem] leading-none tracking-[-0.02em] opacity-90 group-hover:opacity-100 transition-opacity">
-                Cyzora
-              </span>
-            </a>
-          </li>
-          <li data-logo>
-            <a href="#zyranet" aria-label="Zyra Net" className="group flex items-center">
-              <Image src="/images/logo-zyranet.png" alt="" width={406} height={128} className={`h-9 sm:h-10 ${logoClass}`} />
-            </a>
-          </li>
-        </ul>
-
-        <div className="hairline mt-20 lg:mt-28" aria-hidden="true" />
-
+      <div className="max-w-content mx-auto px-6 lg:px-8">
         <h2
           id="companies-heading"
-          className="display text-center mt-12 text-[clamp(2rem,4.6vw,3.5rem)]"
+          className="display text-center mt-14 text-[clamp(2rem,4.6vw,3.5rem)]"
         >
           What I&rsquo;ve built and still run.
         </h2>
-        <p className="mt-5 text-center max-w-[46ch] mx-auto text-[1.0625rem] text-dim">
-          Three companies, each live and serving customers today. Every figure comes from the company&rsquo;s own site.
+        <p className="mt-5 text-center max-w-[44ch] mx-auto text-[1.0625rem] text-dim">
+          Three companies, each live and serving customers today. This is the story of each.
         </p>
 
-        <div className="mt-14 flex flex-col gap-6">
-          {companies.map((company) => (
-            <article
-              key={company.id}
-              id={company.id}
-              data-panel
-              aria-labelledby={`${company.id}-name`}
-              className="card-surface rounded-[28px] border border-line p-5 sm:p-8 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-x-10 gap-y-7 items-center"
-            >
-              <a
-                href={company.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={-1}
-                aria-hidden="true"
-                className="block relative aspect-[4/3] md:aspect-[5/4] overflow-hidden rounded-2xl border border-line"
+        <div className="mt-16 lg:mt-24">
+          {companies.map((company, index) => {
+            const flip = index % 2 === 1
+            return (
+              <article
+                key={company.id}
+                id={company.id}
+                data-panel
+                aria-label={company.name}
+                className="grid lg:grid-cols-12 gap-x-14 gap-y-10 border-t border-line py-14 lg:py-24 items-center"
               >
-                <Image
-                  src={company.image}
-                  alt={company.alt}
-                  fill
-                  sizes="(min-width: 768px) 420px, 100vw"
-                  className="object-cover"
-                />
-              </a>
+                <div className={`lg:col-span-5 ${flip ? 'lg:order-2' : ''}`}>
+                  <div className="inline-flex h-[92px] sm:h-[104px] items-center rounded-2xl bg-[oklch(0.97_0_0)] px-8">
+                    <CompanyLogo id={company.id} size="lg" />
+                  </div>
 
-              <div>
-                <h3 id={`${company.id}-name`} className="display text-[clamp(1.85rem,3.2vw,2.5rem)]">
-                  {company.name}
-                </h3>
-                <p className="mt-1 text-[0.9375rem] text-dim">{company.kind}</p>
-                <p className="mt-4 max-w-[46ch] text-[1.0625rem] leading-[1.65] text-dim">
-                  {company.summary}
-                </p>
+                  <h3
+                    data-reveal-lines
+                    className="display mt-9 text-[clamp(1.75rem,2.9vw,2.5rem)]"
+                  >
+                    {company.hook}
+                  </h3>
 
-                <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-5">
-                  {company.facts.map((fact) => (
-                    <div key={fact.label} className="flex flex-col-reverse justify-end">
-                      <dt className="mt-1 text-[0.875rem] leading-[1.4] text-dim">{fact.label}</dt>
-                      <dd
-                        data-count={fact.count?.to}
-                        data-prefix={fact.count?.prefix}
-                        data-suffix={fact.count?.suffix}
-                        className="font-semibold tracking-[-0.02em] text-[1.5rem] leading-[1.2]"
-                      >
-                        {fact.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
+                  <div className="mt-6 max-w-[48ch] space-y-4 text-[1.0625rem] leading-[1.7] text-dim">
+                    {company.story.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
 
-                <a
-                  href={company.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-7 inline-flex items-center gap-2 py-2 font-semibold text-[1rem] underline underline-offset-[7px] decoration-1 hover:decoration-2"
-                >
-                  Visit {company.host}
-                  <span aria-hidden="true">&#8599;</span>
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              </div>
-            </article>
-          ))}
+                  <a
+                    href={company.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-8 inline-flex items-center gap-2 py-2 font-semibold text-[1rem] underline underline-offset-[7px] decoration-1 hover:decoration-2"
+                  >
+                    Visit {company.host}
+                    <span aria-hidden="true">&#8599;</span>
+                    <span className="sr-only">(opens in a new tab)</span>
+                  </a>
+                </div>
+
+                <div className={`lg:col-span-7 ${flip ? 'lg:order-1' : ''}`}>
+                  <a
+                    href={company.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    className="relative block aspect-[2/1] overflow-hidden rounded-[20px] border border-line shadow-[0_50px_90px_-50px_rgb(0_0_0/0.95)]"
+                  >
+                    <Image
+                      src={company.image}
+                      alt={company.alt}
+                      fill
+                      sizes="(min-width: 1024px) 640px, 100vw"
+                      className="object-cover"
+                    />
+                  </a>
+
+                  <dl className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6">
+                    {company.facts.map((fact) => (
+                      <div key={fact.label} className="flex flex-col-reverse justify-end border-l border-line pl-4">
+                        <dt className="mt-1 text-[0.875rem] leading-[1.4] text-dim">{fact.label}</dt>
+                        <dd
+                          data-count={fact.count?.to}
+                          data-prefix={fact.count?.prefix}
+                          data-suffix={fact.count?.suffix}
+                          className="font-semibold tracking-[-0.02em] text-[1.5rem] leading-[1.2]"
+                        >
+                          {fact.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>
