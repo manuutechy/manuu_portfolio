@@ -5,12 +5,11 @@ interface Company {
   name: string
   kind: string
   summary: string
-  facts: { label: string; value: string }[]
+  facts: { value: string; label: string; count?: { to: number; prefix?: string; suffix?: string } }[]
   url: string
   host: string
   image: string
   alt: string
-  imageSide: 'left' | 'right'
 }
 
 const companies: Company[] = [
@@ -21,16 +20,15 @@ const companies: Company[] = [
     summary:
       'Hot meals, groceries and pharmacy runs, ordered from a phone and brought to the door by Munchify riders. It started at ten orders a day.',
     facts: [
-      { label: 'Orders', value: '20,000+ a week' },
-      { label: 'Local kitchens and stores', value: '50+' },
-      { label: 'Average delivery', value: '20–30 minutes' },
-      { label: 'Next hubs', value: 'Kakamega and Kisumu Central, 2027' },
+      { value: '20,000+', label: 'orders a week', count: { to: 20000, suffix: '+' } },
+      { value: '50+', label: 'local kitchens and stores', count: { to: 50, suffix: '+' } },
+      { value: '20–30 min', label: 'average delivery' },
+      { value: '2027', label: 'Kakamega and Kisumu Central hubs' },
     ],
     url: 'https://munchify.co.ke',
     host: 'munchify.co.ke',
     image: '/images/company-munchify.webp',
     alt: 'The Munchify home page: good food and daily essentials delivered to your door in Maseno',
-    imageSide: 'right',
   },
   {
     id: 'cyzora',
@@ -39,16 +37,15 @@ const companies: Company[] = [
     summary:
       'Businesses collect M-Pesa with a single prompt on the customer’s phone, then pay out staff and suppliers in bulk. Built for everyone from corner kiosks to delivery fleets.',
     facts: [
-      { label: 'Kenyan businesses', value: '500+' },
-      { label: 'Payment prompt reaches the phone', value: 'Under 800 ms' },
-      { label: 'Fees', value: '1.8% in, 1.1% out' },
-      { label: 'Setup fees', value: 'None' },
+      { value: '500+', label: 'Kenyan businesses', count: { to: 500, suffix: '+' } },
+      { value: '< 800 ms', label: 'for the payment prompt to reach the phone' },
+      { value: '1.8%', label: 'fee on deposits, 1.1% on withdrawals' },
+      { value: 'KES 0', label: 'setup fees' },
     ],
     url: 'https://cyzora.co.ke',
     host: 'cyzora.co.ke',
     image: '/images/company-cyzora.webp',
     alt: 'The Cyzora Pay home page: get paid instantly with M-Pesa',
-    imageSide: 'left',
   },
   {
     id: 'zyranet',
@@ -57,65 +54,110 @@ const companies: Company[] = [
     summary:
       'Home WiFi, business broadband and hotspot internet across Kisumu, paid for over M-Pesa, month to month with no lock-in.',
     facts: [
-      { label: 'Active subscribers', value: '2,500+' },
-      { label: 'Top speed', value: '100 Mbps' },
-      { label: 'Areas covered in Kisumu', value: '15+' },
-      { label: 'Home plans from', value: 'KSh 1,500 a month' },
+      { value: '2,500+', label: 'active subscribers', count: { to: 2500, suffix: '+' } },
+      { value: '100 Mbps', label: 'top speed', count: { to: 100, suffix: ' Mbps' } },
+      { value: '15+', label: 'areas covered in Kisumu', count: { to: 15, suffix: '+' } },
+      { value: 'KSh 1,500', label: 'a month for home plans', count: { to: 1500, prefix: 'KSh ' } },
     ],
     url: 'https://zyranet.co.ke',
     host: 'zyranet.co.ke',
     image: '/images/company-zyranet.webp',
     alt: 'The Zyra Net home page: internet that just works in Kisumu',
-    imageSide: 'right',
   },
 ]
+
+const logoClass = 'w-auto opacity-90 group-hover:opacity-100 transition-opacity'
 
 export default function Companies() {
   return (
     <section
       id="companies"
       aria-labelledby="companies-heading"
-      className="bg-paper py-24 lg:py-36"
+      className="bg-night pt-16 lg:pt-24 pb-24 lg:pb-36"
     >
-      <div className="max-w-content mx-auto px-6 lg:px-8">
+      <div className="max-w-[1000px] mx-auto px-6">
+        <p className="text-center text-[0.8125rem] uppercase tracking-[0.2em] text-dim">Companies</p>
+
+        <ul className="mt-10 grid sm:grid-cols-3 gap-y-10 items-center justify-items-center list-none">
+          <li data-logo>
+            <a href="#munchify" aria-label="Munchify" className="group flex items-center">
+              <Image src="/images/logo-munchify.png" alt="" width={390} height={128} className={`h-9 sm:h-10 ${logoClass}`} />
+            </a>
+          </li>
+          <li data-logo>
+            <a href="#cyzora" aria-label="Cyzora" className="group flex items-center gap-3">
+              <Image src="/images/logo-cyzora.png" alt="" width={94} height={128} className={`h-9 sm:h-10 ${logoClass}`} />
+              <span className="font-bold text-[1.75rem] sm:text-[2rem] leading-none tracking-[-0.02em] opacity-90 group-hover:opacity-100 transition-opacity">
+                Cyzora
+              </span>
+            </a>
+          </li>
+          <li data-logo>
+            <a href="#zyranet" aria-label="Zyra Net" className="group flex items-center">
+              <Image src="/images/logo-zyranet.png" alt="" width={406} height={128} className={`h-9 sm:h-10 ${logoClass}`} />
+            </a>
+          </li>
+        </ul>
+
+        <div className="hairline mt-20 lg:mt-28" aria-hidden="true" />
+
         <h2
           id="companies-heading"
-          className="display text-[clamp(2.1rem,5.2vw,4rem)] max-w-[16ch]"
+          className="display text-center mt-12 text-[clamp(2rem,4.6vw,3.5rem)]"
         >
           What I&rsquo;ve built and still run.
         </h2>
-        <p className="mt-6 max-w-[52ch] text-[1.125rem] text-mute">
-          Three companies, each live and serving customers today. Every figure below comes from the company&rsquo;s own site.
+        <p className="mt-5 text-center max-w-[46ch] mx-auto text-[1.0625rem] text-dim">
+          Three companies, each live and serving customers today. Every figure comes from the company&rsquo;s own site.
         </p>
 
-        <div className="mt-16 lg:mt-24">
+        <div className="mt-14 flex flex-col gap-6">
           {companies.map((company) => (
             <article
               key={company.id}
               id={company.id}
+              data-panel
               aria-labelledby={`${company.id}-name`}
-              className="border-t-[3px] border-ink py-14 lg:py-20 grid lg:grid-cols-2 gap-x-16 gap-y-10 items-center"
+              className="card-surface rounded-[28px] border border-line p-5 sm:p-8 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-x-10 gap-y-7 items-center"
             >
-              <div className={company.imageSide === 'left' ? 'lg:order-2' : ''}>
-                <p className="font-bold text-[0.9375rem] text-mute">{company.kind}</p>
-                <h3
-                  id={`${company.id}-name`}
-                  className="display mt-3 text-[clamp(2.25rem,5vw,3.75rem)]"
-                >
+              <a
+                href={company.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={-1}
+                aria-hidden="true"
+                className="block relative aspect-[4/3] md:aspect-[5/4] overflow-hidden rounded-2xl border border-line"
+              >
+                <Image
+                  src={company.image}
+                  alt={company.alt}
+                  fill
+                  sizes="(min-width: 768px) 420px, 100vw"
+                  className="object-cover"
+                />
+              </a>
+
+              <div>
+                <h3 id={`${company.id}-name`} className="display text-[clamp(1.85rem,3.2vw,2.5rem)]">
                   {company.name}
                 </h3>
-                <p className="mt-6 max-w-[46ch] text-[1.125rem] leading-[1.6]">
+                <p className="mt-1 text-[0.9375rem] text-dim">{company.kind}</p>
+                <p className="mt-4 max-w-[46ch] text-[1.0625rem] leading-[1.65] text-dim">
                   {company.summary}
                 </p>
 
-                <dl className="mt-8 border-t border-rule">
+                <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-5">
                   {company.facts.map((fact) => (
-                    <div
-                      key={fact.label}
-                      className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 border-b border-rule"
-                    >
-                      <dt className="text-[0.9375rem] text-mute">{fact.label}</dt>
-                      <dd className="font-bold text-[1.0625rem] text-right">{fact.value}</dd>
+                    <div key={fact.label} className="flex flex-col-reverse justify-end">
+                      <dt className="mt-1 text-[0.875rem] leading-[1.4] text-dim">{fact.label}</dt>
+                      <dd
+                        data-count={fact.count?.to}
+                        data-prefix={fact.count?.prefix}
+                        data-suffix={fact.count?.suffix}
+                        className="font-semibold tracking-[-0.02em] text-[1.5rem] leading-[1.2]"
+                      >
+                        {fact.value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
@@ -124,33 +166,13 @@ export default function Companies() {
                   href={company.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center gap-3 min-h-[52px] px-7 bg-ink text-paper font-bold no-underline hover:bg-black transition-colors"
+                  className="mt-7 inline-flex items-center gap-2 py-2 font-semibold text-[1rem] underline underline-offset-[7px] decoration-1 hover:decoration-2"
                 >
                   Visit {company.host}
                   <span aria-hidden="true">&#8599;</span>
                   <span className="sr-only">(opens in a new tab)</span>
                 </a>
               </div>
-
-              <a
-                href={company.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={-1}
-                aria-hidden="true"
-                className={`block border border-rule shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] ${
-                  company.imageSide === 'left' ? 'lg:order-1' : ''
-                }`}
-              >
-                <Image
-                  src={company.image}
-                  alt={company.alt}
-                  width={1400}
-                  height={679}
-                  sizes="(min-width: 1200px) 560px, (min-width: 1024px) 45vw, 100vw"
-                  className="w-full h-auto"
-                />
-              </a>
             </article>
           ))}
         </div>

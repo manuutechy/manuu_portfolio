@@ -18,18 +18,18 @@ export default function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: 72,
-          background: '#FF5C00',
-          color: '#141210',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#050507',
+          color: '#F2F2F4',
+          textAlign: 'center',
         }}
       >
-        <div style={{ fontSize: 34, fontWeight: 700 }}>Emmanuel Charles</div>
-        <div style={{ fontSize: 96, fontWeight: 800, lineHeight: 1.02, letterSpacing: -3 }}>
-          Founder of Munchify, Cyzora and Zyra Net.
+        <div style={{ fontSize: 104, fontWeight: 700, letterSpacing: 6, textTransform: 'uppercase' }}>
+          Emmanuel Charles
         </div>
-        <div style={{ fontSize: 30, fontWeight: 500 }}>
-          Food delivery. Payments. Internet. Kenya.
+        <div style={{ marginTop: 28, fontSize: 30, letterSpacing: 8, color: '#A7A7AD', textTransform: 'uppercase' }}>
+          Founder of Munchify, Cyzora and Zyra Net
         </div>
       </div>
     ),

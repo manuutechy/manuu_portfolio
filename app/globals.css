@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --color-ink: oklch(0.18 0.012 50);
-  --color-paper: oklch(0.985 0 0);
-  --color-flame: oklch(0.7 0.205 43);
-  --color-mute: oklch(0.42 0.012 50);
-  --color-rule: oklch(0.86 0.005 50);
+  --color-base: oklch(0.08 0.003 260);
+  --color-deep: oklch(0.06 0.002 260);
+  --color-surface: oklch(0.19 0.004 260);
+  --color-line: rgb(255 255 255 / 0.09);
+  --color-fg: oklch(0.96 0.002 260);
+  --color-dim: oklch(0.74 0.005 260);
 
   /* Legacy tokens still read by the inner pages */
   --color-bg-primary: #FFFFFF;
@@ -19,11 +20,11 @@
   --color-border: #E8E8E4;
   --color-nav-bg: rgba(255, 255, 255, 0.72);
 
-  --font-display: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
-  --font-body: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
-  --font-mono: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
-  --font-sora: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
-  --font-dm-sans: var(--font-archivo), 'Segoe UI', system-ui, sans-serif;
+  --font-display: var(--font-gloock), Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-schibsted), 'Segoe UI', system-ui, sans-serif;
+  --font-mono: var(--font-schibsted), 'Segoe UI', system-ui, sans-serif;
+  --font-sora: var(--font-schibsted), 'Segoe UI', system-ui, sans-serif;
+  --font-dm-sans: var(--font-schibsted), 'Segoe UI', system-ui, sans-serif;
 
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
   --shadow-nav: 0 1px 0 #E8E8E4;
@@ -36,6 +37,7 @@
 }
 
 html {
+  background-color: var(--color-deep);
   scroll-behavior: smooth;
   scroll-padding-top: 24px;
   -webkit-font-smoothing: antialiased;
@@ -44,11 +46,11 @@ html {
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
+  background-color: var(--color-base);
+  color: var(--color-fg);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-size: 1.125rem;
+  line-height: 1.65;
 }
 
 h1, h2, h3 {
@@ -64,13 +66,13 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid currentColor;
-  outline-offset: 3px;
+  outline: 2px solid var(--color-fg);
+  outline-offset: 4px;
 }
 
 ::selection {
-  background: var(--color-ink);
-  color: var(--color-flame);
+  background: var(--color-fg);
+  color: var(--color-base);
 }
 
 img {
@@ -80,10 +82,10 @@ img {
 }
 
 .display {
-  font-weight: 800;
-  font-stretch: 112%;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.06;
 }
 
 .skip-link {
@@ -91,8 +93,8 @@ img {
   left: 16px;
   top: -80px;
   z-index: 50;
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-fg);
+  color: var(--color-base);
   padding: 12px 20px;
   font-weight: 700;
   text-decoration: none;
@@ -102,24 +104,41 @@ img {
   top: 16px;
 }
 
-@keyframes rise {
-  from { transform: translateY(18px); }
-  to { transform: translateY(0); }
+.card-surface {
+  background: linear-gradient(160deg, oklch(0.2 0.004 260) 0%, oklch(0.12 0.003 260) 65%);
+  box-shadow:
+    0 40px 70px -40px rgb(0 0 0 / 0.95),
+    inset 0 1px 0 rgb(255 255 255 / 0.05);
 }
 
-.rise {
-  animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+.hairline {
+  width: 1px;
+  height: 7rem;
+  margin-inline: auto;
+  background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.28), transparent);
 }
 
-.rise-2 { animation-delay: 0.08s; }
-.rise-3 { animation-delay: 0.16s; }
+.hero-photo {
+  -webkit-mask-image: radial-gradient(ellipse 52% 78% at 50% 44%, #000 38%, transparent 100%);
+  mask-image: radial-gradient(ellipse 52% 78% at 50% 44%, #000 38%, transparent 100%);
+}
+
+@keyframes reveal-failsafe {
+  to { visibility: visible; }
+}
+
+.js [data-hide] {
+  visibility: hidden;
+  animation: reveal-failsafe 0.01s 3.4s forwards;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .rise {
+  .js [data-hide] {
+    visibility: visible;
     animation: none;
   }
 

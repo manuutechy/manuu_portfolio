@@ -7,11 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: 'var(--color-ink)',
-        paper: 'var(--color-paper)',
-        flame: 'var(--color-flame)',
-        mute: 'var(--color-mute)',
-        rule: 'var(--color-rule)',
+        night: 'var(--color-base)',
+        deep: 'var(--color-deep)',
+        surface: 'var(--color-surface)',
+        line: 'var(--color-line)',
+        fg: 'var(--color-fg)',
+        dim: 'var(--color-dim)',
         'bg-primary': 'var(--color-bg-primary)',
         'bg-secondary': 'var(--color-bg-secondary)',
         'text-primary': 'var(--color-text-primary)',

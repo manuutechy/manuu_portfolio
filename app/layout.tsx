@@ -1,11 +1,17 @@
 import type { Metadata } from 'next'
-import { Archivo } from 'next/font/google'
+import { Gloock, Schibsted_Grotesk } from 'next/font/google'
 import './globals.css'
 
-const archivo = Archivo({
+const gloock = Gloock({
   subsets: ['latin'],
-  axes: ['wdth'],
-  variable: '--font-archivo',
+  weight: '400',
+  variable: '--font-gloock',
+  display: 'swap',
+})
+
+const schibsted = Schibsted_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-schibsted',
   display: 'swap',
 })
 
@@ -62,8 +68,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={archivo.variable}>
+    <html lang="en" className={`${gloock.variable} ${schibsted.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
