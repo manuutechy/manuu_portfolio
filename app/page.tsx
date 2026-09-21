@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Hero from './components/Hero'
+import Marquee from './components/Marquee'
+import SectionRail from './components/SectionRail'
 import Companies from './components/Companies'
+import Journey from './components/Journey'
 import Founder from './components/Founder'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -18,10 +21,13 @@ export default function Home() {
       <JsonLd data={[personSchema(), websiteSchema()]} />
       <main id="main">
         <Hero />
+        <Marquee />
         <Companies />
+        <Journey />
         <Founder />
         <Contact />
       </main>
+      <SectionRail />
       <Footer />
       <Motion />
     </>

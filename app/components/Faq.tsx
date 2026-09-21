@@ -6,7 +6,7 @@ interface FaqProps {
 export default function Faq({ items, heading = 'Frequently asked questions' }: FaqProps) {
   return (
     <section aria-labelledby="faq-heading" className="mt-20 lg:mt-28">
-      <h2 id="faq-heading" className="display text-[clamp(1.75rem,3vw,2.375rem)]">
+      <h2 id="faq-heading" data-reveal-lines className="display text-[clamp(1.75rem,3vw,2.375rem)]">
         {heading}
       </h2>
       <div className="mt-8 border-y border-line divide-y divide-[rgb(255_255_255/0.09)]">

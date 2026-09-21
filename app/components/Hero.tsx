@@ -11,19 +11,25 @@ export default function Hero() {
     >
       <div
         aria-hidden="true"
+        data-hero-glow
         className="absolute inset-0 -z-10 bg-[radial-gradient(65%_55%_at_50%_0%,rgb(255_255_255/0.08),transparent_72%)]"
+      />
+      <div
+        aria-hidden="true"
+        data-hero-light
+        className="pointer-events-none absolute left-0 top-0 -z-10 h-[720px] w-[720px] rounded-full opacity-0 bg-[radial-gradient(closest-side,rgb(255_255_255/0.07),transparent)]"
       />
 
       <Nav animate />
 
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20">
+      <div data-hero-content className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20">
         <h1
           data-hero-title
           data-hide
-          className="display text-[clamp(2.75rem,8.6vw,6.75rem)] [text-wrap:balance]"
+          className="display text-[clamp(2.75rem,8.6vw,6.75rem)] [text-wrap:balance] [font-kerning:none]"
         >
-          Emmanuel <br className="sm:hidden" />
-          Charles
+          <span className="block sm:inline">Emmanuel</span>{' '}
+          <span className="block sm:inline">Charles</span>
         </h1>
         <p
           data-hero-sub
@@ -39,6 +45,8 @@ export default function Hero() {
               <a
                 href={`#${company.id}`}
                 aria-label={`${company.name}: ${company.caption}`}
+                data-tilt
+                data-cursor="Explore"
                 className="group block no-underline"
               >
                 <span className="flex h-[84px] sm:h-[112px] items-center justify-center rounded-2xl bg-[oklch(0.97_0_0)] transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:-translate-y-1">

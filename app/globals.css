@@ -198,16 +198,62 @@ img {
   line-height: 1.6;
 }
 
+[data-sticky-nav],
+[data-top] {
+  visibility: hidden;
+}
+
+.curtain {
+  display: none;
+}
+
+.js .curtain {
+  display: flex;
+  animation: curtain-failsafe 0.01s 5.4s forwards;
+}
+
+@keyframes curtain-failsafe {
+  to { visibility: hidden; }
+}
+
+[data-spot] {
+  isolation: isolate;
+}
+
+[data-spot]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.08), transparent 65%);
+}
+
+[data-spot]:hover::before {
+  opacity: 1;
+}
+
 @keyframes reveal-failsafe {
   to { visibility: visible; }
 }
 
 .js [data-hide] {
   visibility: hidden;
-  animation: reveal-failsafe 0.01s 3.4s forwards;
+  animation: reveal-failsafe 0.01s 4.8s forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee {
+    display: none;
+  }
+
+  .js .curtain {
+    display: none;
+  }
+
   html {
     scroll-behavior: auto;
   }

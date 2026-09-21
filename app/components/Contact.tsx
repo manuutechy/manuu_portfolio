@@ -18,7 +18,8 @@ export default function Contact() {
         <h2
           id="contact-heading"
           data-reveal-lines
-          className="display text-[clamp(2.25rem,6vw,4.5rem)]"
+          data-proximity
+          className="display text-[clamp(2.25rem,6vw,4.5rem)] [font-kerning:none]"
         >
           Talk to me directly.
         </h2>

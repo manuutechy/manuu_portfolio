@@ -18,12 +18,12 @@ export default function Nav({ animate = false }: { animate?: boolean }) {
         <ul className="hidden md:flex items-center gap-12 list-none">
           <li>
             <Link href="/#companies" className={linkClass}>
-              Companies
+              <span data-scramble>Companies</span>
             </Link>
           </li>
           <li>
             <Link href="/about" className={linkClass}>
-              About
+              <span data-scramble>About</span>
             </Link>
           </li>
         </ul>
@@ -35,7 +35,7 @@ export default function Nav({ animate = false }: { animate?: boolean }) {
         <ul className="flex items-center gap-6 md:gap-12 list-none">
           <li>
             <Link href="/#contact" className={linkClass}>
-              Contact
+              <span data-scramble>Contact</span>
             </Link>
           </li>
           <li className="hidden md:block">
@@ -45,7 +45,7 @@ export default function Nav({ animate = false }: { animate?: boolean }) {
               rel="noopener noreferrer"
               className={linkClass}
             >
-              GitHub
+              <span data-scramble>GitHub</span>
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </li>

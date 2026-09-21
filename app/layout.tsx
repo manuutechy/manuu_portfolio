@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Gloock, Schibsted_Grotesk } from 'next/font/google'
 import './globals.css'
 import { siteUrl } from './lib/site'
+import Curtain from './components/Curtain'
+import Cursor from './components/Cursor'
 
 const gloock = Gloock({
   subsets: ['latin'],
@@ -49,11 +51,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${gloock.variable} ${schibsted.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${gloock.variable} ${schibsted.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
+        <Curtain />
+        <Cursor />
         <a href="#main" className="skip-link">Skip to content</a>
         {children}
       </body>

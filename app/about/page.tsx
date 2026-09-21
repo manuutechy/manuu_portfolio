@@ -131,7 +131,7 @@ export default function AboutPage() {
             </p>
           </article>
 
-          <aside className="lg:col-span-4 lg:sticky lg:top-8 self-start rounded-2xl border border-line p-7" aria-label="Emmanuel Charles at a glance">
+          <aside className="relative lg:col-span-4 lg:sticky lg:top-8 self-start rounded-2xl border border-line p-7" data-spot aria-label="Emmanuel Charles at a glance">
             <h2 className="font-semibold text-[1.0625rem]">At a glance</h2>
             <dl className="mt-5 space-y-4 text-[1rem]">
               {glance.map(([term, value]) => (

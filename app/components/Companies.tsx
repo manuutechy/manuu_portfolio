@@ -16,7 +16,9 @@ export default function Companies() {
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <h2
           id="companies-heading"
-          className="display text-center mt-14 text-[clamp(2rem,4.6vw,3.5rem)]"
+          data-reveal-lines
+          data-proximity
+          className="display text-center mt-14 text-[clamp(2rem,4.6vw,3.5rem)] [font-kerning:none]"
         >
           What I&rsquo;ve built and still run.
         </h2>
@@ -33,10 +35,11 @@ export default function Companies() {
                 id={company.id}
                 data-panel
                 aria-label={company.name}
-                className="grid lg:grid-cols-12 gap-x-14 gap-y-10 border-t border-line py-14 lg:py-24 items-center"
+                className="relative grid lg:grid-cols-12 gap-x-14 gap-y-10 py-14 lg:py-24 items-center"
               >
-                <div className={`lg:col-span-5 ${flip ? 'lg:order-2' : ''}`}>
-                  <div className="inline-flex h-[92px] sm:h-[104px] items-center rounded-2xl bg-[oklch(0.97_0_0)] px-8">
+                <div data-rule aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-[var(--color-line)]" />
+                <div data-depth="-1" className={`lg:col-span-5 ${flip ? 'lg:order-2' : ''}`}>
+                  <div data-tile className="inline-flex h-[92px] sm:h-[104px] items-center rounded-2xl bg-[oklch(0.97_0_0)] px-8">
                     <CompanyLogo id={company.id} size="lg" />
                   </div>
 
@@ -75,17 +78,21 @@ export default function Companies() {
                   </div>
                 </div>
 
-                <div className={`lg:col-span-7 ${flip ? 'lg:order-1' : ''}`}>
+                <div data-depth="1" className={`lg:col-span-7 ${flip ? 'lg:order-1' : ''}`}>
                   <Link
                     href={company.path}
                     tabIndex={-1}
                     aria-hidden="true"
+                    data-clip
+                    data-shot
+                    data-cursor="Read story"
                     className="relative block aspect-[2/1] overflow-hidden rounded-[20px] border border-line shadow-[0_50px_90px_-50px_rgb(0_0_0/0.95)]"
                   >
                     <Image
                       src={company.image}
                       alt={company.alt}
                       fill
+                      data-shot-img
                       sizes="(min-width: 1024px) 640px, 100vw"
                       className="object-cover"
                     />

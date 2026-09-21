@@ -129,8 +129,8 @@ export default function ZyraNetPage() {
       </PageHeader>
 
       <div className="max-w-content mx-auto px-6 lg:px-8 pb-24 lg:pb-36">
-        <div className="relative aspect-[2/1] overflow-hidden rounded-[20px] border border-line shadow-[0_50px_90px_-50px_rgb(0_0_0/0.95)]">
-          <Image src={company.image} alt={company.alt} fill priority sizes="(min-width: 1200px) 1136px, 100vw" className="object-cover" />
+        <div data-clip data-shot className="relative aspect-[2/1] overflow-hidden rounded-[20px] border border-line shadow-[0_50px_90px_-50px_rgb(0_0_0/0.95)]">
+          <Image data-shot-img src={company.image} alt={company.alt} fill priority sizes="(min-width: 1200px) 1136px, 100vw" className="object-cover" />
         </div>
         <Facts facts={company.facts} className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6" />
 
@@ -186,7 +186,7 @@ export default function ZyraNetPage() {
             </p>
           </article>
 
-          <aside className="lg:col-span-4 lg:sticky lg:top-8 self-start rounded-2xl border border-line p-7" aria-label="Zyra Net at a glance">
+          <aside className="relative lg:col-span-4 lg:sticky lg:top-8 self-start rounded-2xl border border-line p-7" data-spot aria-label="Zyra Net at a glance">
             <h2 className="font-semibold text-[1.0625rem]">Zyra Net at a glance</h2>
             <dl className="mt-5 space-y-4 text-[1rem]">
               <div>

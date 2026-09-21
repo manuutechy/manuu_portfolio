@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Founder() {
@@ -5,8 +6,17 @@ export default function Founder() {
     <section
       id="founder"
       aria-labelledby="founder-heading"
-      className="bg-night pb-24 lg:pb-36"
+      className="relative overflow-hidden bg-night pb-24 lg:pb-36"
     >
+      <Image
+        src="/images/logo-mark.png"
+        alt=""
+        aria-hidden="true"
+        width={503}
+        height={512}
+        data-spin
+        className="pointer-events-none absolute -right-32 top-[8%] h-[640px] w-auto opacity-[0.05]"
+      />
       <div className="hairline" aria-hidden="true" />
       <div className="max-w-[900px] mx-auto px-6 pt-16 lg:pt-24 text-center">
         <h2
